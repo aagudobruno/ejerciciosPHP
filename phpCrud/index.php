@@ -24,7 +24,10 @@
         <?php
         include 'config/database.php';
         
-        // delete message prompt will be here
+        $action = isset($_GET['action']) ? $_GET['action'] : "";
+        if($action=='deleted'){
+            echo "<div class='alert alert-success'>Record was deleted.</div>";
+        }
 
         $query = "SELECT id, name, description, price FROM products ORDER BY id DESC";
         $stmt = $con->prepare($query);
@@ -84,6 +87,14 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
    
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  
+
+<script type='text/javascript'>
+function delete_user( id ){
+    var answer = confirm('Are you sure?');
+    if (answer){
+        window.location = 'delete.php?id=' + id;
+    } 
+}
+</script>  
 </body>
 </html>
